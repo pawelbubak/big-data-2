@@ -14,6 +14,7 @@ echo "Unpacked data"
 cd ..
 
 echo "Loading data into hadoop"
+hadoop fs -rm -r project/spark/
 hadoop fs -mkdir -p project/spark/
-hadoop fs -copyFromLocal project-data project/spark/
+hadoop fs -copyFromLocal project-data/airbnb/* project/spark/
 echo "Loaded data"
