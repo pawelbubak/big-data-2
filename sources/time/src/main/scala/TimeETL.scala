@@ -10,7 +10,8 @@ object TimeETL {
 
     def main(args: Array[String]) {
         val spark: SparkSession = SparkSession.builder()
-            .appName("SparkByExample")
+            .appName("Time ETL")
+            .enableHiveSupport()
             .getOrCreate()
 
         import spark.implicits._
@@ -19,21 +20,21 @@ object TimeETL {
             format("org.apache.spark.csv").
             option("header", value = true).
             option("inferSchema", value = true).
-            csv("externaldata/ParisCalendar.csv").
+            csv("project/spark/ParisCalendar.csv").
             cache().agg(min($"date").as("min_date"), max($"date").as("max_date"))
 
         val madrid_calendar_DS = spark.read.
             format("org.apache.spark.csv").
             option("header", value = true).
             option("inferSchema", value = true).
-            csv("externaldata/MadridCalendar.csv").
+            csv("project/spark/MadridCalendar.csv").
             cache().agg(min($"date").as("min_date"), max($"date").as("max_date"))
 
         val berlin_calendar_DS = spark.read.
             format("org.apache.spark.csv").
             option("header", value = true).
             option("inferSchema", value = true).
-            csv("externaldata/BerlinCalendar.csv").
+            csv("project/spark/BerlinCalendar.csv").
             cache().agg(min($"date").as("min_date"), max($"date").as("max_date"))
 
         val calendar_DS = paris_calendar_DS.union(madrid_calendar_DS).union(berlin_calendar_DS)

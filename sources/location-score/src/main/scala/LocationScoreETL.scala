@@ -6,7 +6,8 @@ object LocationScoreETL {
 
     def main(args: Array[String]) {
         val spark: SparkSession = SparkSession.builder()
-            .appName("SparkByExample")
+            .appName("Location score ETL")
+            .enableHiveSupport()
             .getOrCreate()
 
         import spark.implicits._

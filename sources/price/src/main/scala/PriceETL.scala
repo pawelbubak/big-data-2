@@ -7,7 +7,8 @@ object PriceETL {
 
     def main(args: Array[String]) {
         val spark: SparkSession = SparkSession.builder()
-            .appName("SparkByExample")
+            .appName("Price ETL")
+            .enableHiveSupport()
             .getOrCreate()
 
         import spark.implicits._
@@ -19,7 +20,7 @@ object PriceETL {
             option("escape", "\"").
             option("delimiter", ",").
             option("multiline", value = true).
-            csv("externaldata/ParisListings.csv").
+            csv("project/spark/ParisListings.csv").
             cache().
             select(substring($"price", 2, 10).cast("double").as("price"))
 
@@ -30,7 +31,7 @@ object PriceETL {
             option("escape", "\"").
             option("delimiter", ",").
             option("multiline", value = true).
-            csv("externaldata/BerlinListings.csv").
+            csv("project/spark/BerlinListings.csv").
             cache().
             select(substring($"price", 2, 10).cast("double").as("price"))
 
@@ -41,7 +42,7 @@ object PriceETL {
             option("escape", "\"").
             option("delimiter", ",").
             option("multiline", value = true).
-            csv("externaldata/MadridListings.csv").
+            csv("project/spark/MadridListings.csv").
             cache().
             select(substring($"price", 2, 10).cast("double").as("price"))
 

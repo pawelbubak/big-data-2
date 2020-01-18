@@ -5,7 +5,8 @@ object FactETL {
 
     def main(args: Array[String]) {
         val spark: SparkSession = SparkSession.builder()
-            .appName("SparkByExample")
+            .appName("Fact ETL")
+            .enableHiveSupport()
             .getOrCreate()
 
         import spark.implicits._
@@ -19,7 +20,7 @@ object FactETL {
             option("escape", "\"").
             option("delimiter", ",").
             option("multiline", value = true).
-            csv("externaldata/ParisListings.csv").
+            csv("project/spark/ParisListings.csv").
             cache().
             select(
                 $"id", $"bathrooms", $"bedrooms", $"review_scores_location", $"review_score_value",
@@ -29,7 +30,7 @@ object FactETL {
         val calendar_paris_DS = spark.read.format("org.apache.spark.csv").
             option("header", value = true).
             option("inferSchema", value = true).
-            csv("externaldata/ParisCalendar.csv").
+            csv("project/spark/ParisCalendar.csv").
             select($"listing_id", $"date", $"available")
 
         val dim_location_score = spark.sql("select * from dim_location_score")
@@ -67,7 +68,7 @@ object FactETL {
             option("escape", "\"").
             option("delimiter", ",").
             option("multiline", value = true).
-            csv("externaldata/BerlinListings.csv").
+            csv("project/spark/BerlinListings.csv").
             cache().
             select(
                 $"id", $"bathrooms", $"bedrooms", $"review_scores_location", $"review_score_value",
@@ -77,7 +78,7 @@ object FactETL {
         val calendar_berlin_DS = spark.read.format("org.apache.spark.csv").
             option("header", value = true).
             option("inferSchema", value = true).
-            csv("externaldata/BerlinCalendar.csv").
+            csv("project/spark/BerlinCalendar.csv").
             select($"listing_id", $"date", $"available")
 
         val facts_berlin = calendar_berlin_DS.join(listings_berlin_DS, $"listing_id" === $"id").
@@ -111,7 +112,7 @@ object FactETL {
             option("escape", "\"").
             option("delimiter", ",").
             option("multiline", value = true).
-            csv("externaldata/MadridListings.csv").
+            csv("project/spark/MadridListings.csv").
             cache().
             select(
                 $"id", $"bathrooms", $"bedrooms", $"review_scores_location", $"review_score_value",
@@ -121,7 +122,7 @@ object FactETL {
         val calendar_madrid_DS = spark.read.format("org.apache.spark.csv").
             option("header", value = true).
             option("inferSchema", value = true).
-            csv("externaldata/MadridCalendar.csv").
+            csv("project/spark/MadridCalendar.csv").
             select($"listing_id", $"date", $"available")
 
         val facts_madrid = calendar_madrid_DS.join(listings_madrid_DS, $"listing_id" === $"id").

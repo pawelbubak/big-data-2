@@ -6,6 +6,7 @@ object LocationETL {
     def main(args: Array[String]) {
         val spark: SparkSession = SparkSession.builder()
             .appName("Location ETL")
+            .enableHiveSupport()
             .getOrCreate()
 
         import spark.implicits._
@@ -17,7 +18,7 @@ object LocationETL {
             option("escape", "\"").
             option("delimiter", ",").
             option("multiline", value = true).
-            csv("externaldata/BerlinListings.csv").
+            csv("project/spark/BerlinListings.csv").
             select($"country_code", $"country", $"city", $"zipcode", concat($"country_code", $"zipcode").as("location_id")).
             distinct().
             cache()
@@ -29,7 +30,7 @@ object LocationETL {
             option("escape", "\"").
             option("delimiter", ",").
             option("multiline", value = true).
-            csv("externaldata/MadridListings.csv").
+            csv("project/spark/MadridListings.csv").
             select($"country_code", $"country", $"city", $"zipcode", concat($"country_code", $"zipcode").as("location_id")).
             distinct().
             cache()
@@ -41,7 +42,7 @@ object LocationETL {
             option("escape", "\"").
             option("delimiter", ",").
             option("multiline", value = true).
-            csv("externaldata/ParisListings.csv").
+            csv("project/spark/ParisListings.csv").
             select($"country_code", $"country", $"city", $"zipcode", concat($"country_code", $"zipcode").as("location_id")).
             distinct().
             cache()
