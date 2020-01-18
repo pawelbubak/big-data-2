@@ -149,7 +149,7 @@ object FactETL {
 
         val facts_all = facts_madrid.union(facts_paris).union(facts_berlin)
 
-        facts_all.write.insertInto("etl_hd.fact")
+        facts_all.write.insertInto("etl_hd.f_fact")
     }
 
 }
