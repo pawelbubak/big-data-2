@@ -9,18 +9,18 @@
  paczkę z zbiorem danych i rozpakuje ją w folderze `project-data`, a następnie dane zostaną załadowane do folderu
  `project/spark/` w systemie plików hdfs.
     ```console
-     foo@bar:~$ ./DownloadData.sh
-     ```
+    foo@bar:~$ ./DownloadData.sh
+    ```
 4. W celu utworzenia tabel przechowujących dane, należy uruchomić skrypt `CreateDatabase.sh`. Skrypt do uruchomienia
  wymaga pliku `CreateDatabase.sql`
     ```console
-     foo@bar:~$ ./CreateDatabase.sh
-     ```
+    foo@bar:~$ ./CreateDatabase.sh
+    ```
 5. W celu przetworzenia i załadowania danych do hurtowni należy uruchomić skrypt `FillTables.sh`. Skrypt wymaga 
  plików: `fact.jar`, `location.jar`, `location-score.jar`, `price.jar` i `time.jar`
     ```console
-     foo@bar:~$ ./FillTables.sh
-     ```
+    foo@bar:~$ ./FillTables.sh
+    ```
 
 ## Generacja plików jar
 1. W katalogu sources znajdują się projekty poszczególnych procesów ETL, aby IntelliJ mogło je obsłużyć należy dodać je
