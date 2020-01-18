@@ -10,7 +10,8 @@ object dim_location_score {
   def main(args: Array[String]) {
     val spark: SparkSession = SparkSession.builder()
       .master("local[1]")
-      .appName("SparkByExample")
+      .appName("dim_location_score")
+      .enableHiveSupport()
       .getOrCreate()
 
     import spark.implicits._

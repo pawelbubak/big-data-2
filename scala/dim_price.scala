@@ -12,7 +12,8 @@ object dim_price {
   def main(args: Array[String]) {
     val spark: SparkSession = SparkSession.builder()
       .master("local[1]")
-      .appName("SparkByExample")
+      .appName("dim_price")
+      .enableHiveSupport()
       .getOrCreate()
 
     import spark.implicits._

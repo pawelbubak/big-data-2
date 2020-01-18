@@ -12,7 +12,8 @@ object dim_time {
   def main(args: Array[String]) {
     val spark: SparkSession = SparkSession.builder()
       .master("local[1]")
-      .appName("SparkByExample")
+      .appName("dim_time")
+      .enableHiveSupport()
       .getOrCreate()
 
     import spark.implicits._

@@ -8,7 +8,8 @@ object fact {
   def main(args: Array[String]) {
     val spark: SparkSession = SparkSession.builder()
       .master("local[1]")
-      .appName("SparkByExample")
+      .appName("f_fact")
+      .enableHiveSupport()
       .getOrCreate()
 
     import spark.implicits._
