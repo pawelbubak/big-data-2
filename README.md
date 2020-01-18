@@ -21,3 +21,13 @@
     ```console
      foo@bar:~$ ./FillTables.sh
      ```
+
+## Generacja plików jar
+1. W katalogu sources znajdują się projekty poszczególnych procesów ETL, aby IntelliJ mogło je obsłużyć należy dodać je
+ jako moduły `File->Project Structure->Modules (Import module->wybierz folder->sbt)` lub używając zakładki `sbt` 
+2. Aby móc wygenerować pliki jar należy odpowiednio skonfigurować środowisko w zakładce
+ `File->Project Structure->Artifacts`. W celu konfiguracji generacji wybranego pliku jar należy kliknąć `+` i wybrać z
+  listy `JAR->Empty`, następnie nadać mu odpowienią nazwę oraz wybrać z zakładki `Available Elements` odpowiedni projekt
+  np. `fact->'fact' compiled output`
+3. W celu wygenerowania plików jar używając paska narzędzi wybieramy `Build->Build Artifacts..`, a następnie wybieramy
+ odpowiedni projekt i klikamy jedną z opcji (np. `Build`)
