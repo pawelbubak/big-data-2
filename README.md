@@ -31,3 +31,4 @@
   np. `fact->'fact' compiled output`
 3. W celu wygenerowania plików jar używając paska narzędzi wybieramy `Build->Build Artifacts..`, a następnie wybieramy
  odpowiedni projekt i klikamy jedną z opcji (np. `Build`)
+4. Plik powininen zostać wygenerowany w folderze `out/artifacts/nazwa_projektu`
