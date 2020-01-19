@@ -19,7 +19,9 @@ object LocationETL {
             option("delimiter", ",").
             option("multiline", value = true).
             csv("project/spark/BerlinListings.csv").
-            select($"country_code", $"country", $"city", $"zipcode", concat($"country_code", $"zipcode").as("location_id")).
+            select(upper($"country_code"), upper($"country"), upper($"city"),
+                $"zipcode", concat($"zipcode", $"city").as("location_id")).
+            where($"country_code" === "DE").
             distinct().
             cache()
 
@@ -31,7 +33,9 @@ object LocationETL {
             option("delimiter", ",").
             option("multiline", value = true).
             csv("project/spark/MadridListings.csv").
-            select($"country_code", $"country", $"city", $"zipcode", concat($"country_code", $"zipcode").as("location_id")).
+            select(upper($"country_code"), upper($"country"), upper($"city"),
+                $"zipcode", concat($"zipcode", $"city").as("location_id")).
+            where($"country_code" === "ES").
             distinct().
             cache()
 
@@ -43,7 +47,9 @@ object LocationETL {
             option("delimiter", ",").
             option("multiline", value = true).
             csv("project/spark/ParisListings.csv").
-            select($"country_code", $"country", $"city", $"zipcode", concat($"country_code", $"zipcode").as("location_id")).
+            select(upper($"country_code"), upper($"country"), upper($"city"),
+                $"zipcode", concat($"zipcode", $"city").as("location_id")).
+            where($"country_code" === "FR").
             distinct().
             cache()
 
