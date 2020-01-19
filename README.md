@@ -1,6 +1,11 @@
 # Big data - Spark - airbnb
 ## Instrukcja uruchomienia projektu
 1. Należy skopiować pliki sh, jar i sql na klaster
+    ```console
+    foo@bar:~$ gsutil cp gs://nazwa_kubelka/folder/*.sh ./
+    foo@bar:~$ gsutil cp gs://nazwa_kubelka/folder/*.jar ./
+    foo@bar:~$ gsutil cp gs://nazwa_kubelka/folder/*.sql ./
+    ```
 2. Plikom sh należy nadać uprawnienia do wykonywania
     ```console
     foo@bar:~$ chmod +x *.sh
