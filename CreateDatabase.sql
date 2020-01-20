@@ -1,5 +1,10 @@
 CREATE DATABASE IF NOT EXISTS etl_hd;
 USE etl_hd;
+DROP TABLE IF EXISTS dim_time;
+DROP TABLE IF EXISTS dim_location;
+DROP TABLE IF EXISTS dim_price;
+DROP TABLE IF EXISTS dim_location_score;
+DROP TABLE IF EXISTS f_fact;
 CREATE TABLE IF NOT EXISTS dim_time (dt TIMESTAMP, day INT, month INT, year INT) STORED AS ORC;
 CREATE TABLE IF NOT EXISTS dim_location (country_code STRING, country STRING, city STRING, zipcode STRING, location_id STRING) STORED AS ORC;
 CREATE TABLE IF NOT EXISTS dim_price (price_id INT, min_price DOUBLE, max_price DOUBLE, price_range STRING) STORED AS ORC;
